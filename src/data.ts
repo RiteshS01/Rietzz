@@ -439,15 +439,24 @@ export const INITIAL_COUPONS: Coupon[] = [
 ];
 
 export const COUNTRY_META = [
-  { code: 'ARG', name: 'Argentina', flag: '🇦🇷 ', banner: 'https://i.pinimg.com/736x/db/52/91/db5291e757fdb676a3db9222ceffb0ae.jpg' },ormat&fit=crop&w=1200&q=80', slogan: 'Home of the Golden Triple Cro
-  { code: 'BRA', name: 'Brazil', flag: '🇧🇷 ', banner: 'https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/7f5c/live/d265d420-de30-11ef-ac5a-93e8b29ec95c.jpg', slogan: 'Vibrant Samba Joga Bonito Style' },
-  { code: 'POR', name: 'Portugal', flag: '🇵🇹 ', banner: 'https://assets.khelnow.com/news/uploads/2025/06/ronaldo-gettynGs9KL78bYAAUGo0-1-1200x800.jpeg', slogan: 'Unleash the Navigators Fury' },
+  { code: 'ARG', name: 'Argentina', flag: '🇦🇷', banner: 'https://i.pinimg.com/736x/db/52/91/db5291e757fdb676a3db9222ceffb0ae.jpg', slogan: 'Home of the Golden Triple Crown' },
+
+  { code: 'BRA', name: 'Brazil', flag: '🇧🇷', banner: 'https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/7f5c/live/d265d420-de30-11ef-ac5a-93e8b29ec95c.jpg', slogan: 'Vibrant Samba Joga Bonito Style' },
+
+  { code: 'POR', name: 'Portugal', flag: '🇵🇹', banner: 'https://assets.khelnow.com/news/uploads/2025/06/ronaldo-gettynGs9KL78bYAAUGo0-1-1200x800.jpeg', slogan: 'Unleash the Navigators Fury' },
+
   { code: 'GER', name: 'Germany', flag: '🇩🇪', banner: 'https://cdn.vox-cdn.com/thumbor/iM-2CLZzfAIVcXHQhGDeSkal5Ug=/0x0:2763x3389/2420x1613/filters:focal(1270x454:1712x896)/cdn.vox-cdn.com/uploads/chorus_image/image/73668499/2178776699.0.jpg', slogan: 'Engineered for Absolute Victory' },
+
   { code: 'FRA', name: 'France', flag: '🇫🇷', banner: 'https://cdn.pixabay.com/photo/2022/06/08/10/00/kylian-mbappe-7250181_1280.jpg', slogan: 'Elegance of Parisian Football Royalty' },
+
   { code: 'ESP', name: 'Spain', flag: '🇪🇸', banner: 'https://statico.sportskeeda.com/editor/2024/07/38fc8-17205738387157-1920.jpg', slogan: 'Passionate Fire of La Roja' },
+
   { code: 'ITA', name: 'Italy', flag: '🇮🇹', banner: 'https://static.independent.co.uk/2024/05/23/15/newFile-2.jpg', slogan: 'Retro Class of the Azzurri Core' },
+
   { code: 'NED', name: 'Netherlands', flag: '🇳🇱', banner: 'https://assets.goal.com/images/v3/blt96931d6427f6d12d/Memphis_Depay_Netherlands_2022.jpg', slogan: 'Total Orange Street Hybrid Force' },
+
   { code: 'BEL', name: 'Belgium', flag: '🇧🇪', banner: 'https://cdn.mos.cms.futurecdn.net/YsPZpEoQFxVvzGuPyuZXYG.jpg', slogan: 'Golden Devils Coronation Glory' },
+
   { code: 'CRO', name: 'Croatia', flag: '🇭🇷', banner: 'https://e0.365dm.com/23/06/1600x900/skysports-luka-modric-croatia_6187674.jpg?20230614224314', slogan: 'Fiery Grid Checkerboard Pride' }
 ];
 
