@@ -851,7 +851,7 @@ return (
               
               {/* Jerseys Slabs */}
               <div className="relative h-96 rounded-2xl overflow-hidden border border-white/5 group shadow-2xl flex flex-col justify-end p-6">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-[url('https://thejerseyarena.in/wp-content/uploads/2025/03/Best-website-to-buy-Football-Jersey-in-india.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Stadium Core</span>
@@ -864,7 +864,7 @@ return (
 
               {/* Oversized Slabs */}
               <div className="relative h-96 rounded-2xl overflow-hidden border border-white/5 group shadow-2xl flex flex-col justify-end p-6">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-[url('https://cdn.corenexis.com/files/c/5827828720.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Drop Shoulder</span>
@@ -877,7 +877,7 @@ return (
 
               {/* Gym Vests Slabs */}
               <div className="relative h-96 rounded-2xl overflow-hidden border border-white/5 group shadow-2xl flex flex-col justify-end p-6">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-[url('https://i.pinimg.com/736x/aa/61/8b/aa618b61fb6925fa3ccaf0912ae5f801.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Kinetic Thread</span>
