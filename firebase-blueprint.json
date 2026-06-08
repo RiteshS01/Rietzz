@@ -1,0 +1,190 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile document containing personal information, roles, and referrals.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique user ID matching Firebase UID." },
+        "email": { "type": "string", "description": "User email address." },
+        "name": { "type": "string", "description": "User display name." },
+        "role": { "type": "string", "enum": ["customer", "admin"], "description": "User access privileges." },
+        "referralCode": { "type": "string", "description": "Unique referral code for user like REF-RIETZZ123." },
+        "referredBy": { "type": "string", "description": "Referral code of the user who referred this user." },
+        "referralCredits": { "type": "number", "description": "Accumulated referral earnings/discounts." },
+        "address": { "type": "object", "description": "Saved shipping address." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of user creation." }
+      },
+      "required": ["userId", "email", "name", "role", "referralCode", "referralCredits", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Sportswear merchandise like Football Jerseys, Oversized T-Shirts, or Gym Vests.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string", "description": "Unique product ID." },
+        "title": { "type": "string", "description": "Product display name." },
+        "description": { "type": "string", "description": "Detailed description." },
+        "category": { "type": "string", "enum": ["jerseys", "oversized", "vests"], "description": "Apparel category." },
+        "price": { "type": "number", "description": "Product price in INR." },
+        "images": { "type": "array", "description": "List of Cloudinary image URLs/mockups." },
+        "sizes": { "type": "array", "description": "Available clothing sizes." },
+        "colors": { "type": "array", "description": "Available color pathways." },
+        "rating": { "type": "number", "description": "Average user rating (0-5)." },
+        "reviewsCount": { "type": "number", "description": "Total count of review submissions." },
+        "stock": { "type": "number", "description": "Available inventory levels." },
+        "specs": { "type": "object", "description": "Key specifications (e.g., Fabric, Fit, Care)." }
+      },
+      "required": ["productId", "title", "description", "category", "price", "images", "sizes", "colors", "rating", "reviewsCount", "stock"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Detailed specifications of a purchase order.",
+      "type": "object",
+      "properties": {
+        "orderId": { "type": "string" },
+        "userId": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "products": { "type": "array", "description": "Purchased items with selected options." },
+        "subtotal": { "type": "number" },
+        "shipping": { "type": "number" },
+        "discount": { "type": "number" },
+        "total": { "type": "number" },
+        "couponCode": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Confirmed", "Processing", "Shipped", "Out For Delivery", "Delivered"] },
+        "shippingAddress": { "type": "object" },
+        "paymentMethod": { "type": "string" },
+        "paymentStatus": { "type": "string", "enum": ["Pending", "Success", "Failed"] },
+        "trackingTimeline": { "type": "array", "description": "Delivery milestone updates." },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["orderId", "userId", "customerEmail", "products", "subtotal", "shipping", "discount", "total", "status", "shippingAddress", "paymentMethod", "paymentStatus", "trackingTimeline", "timestamp"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Product review submitted by verified or anonymous buyers.",
+      "type": "object",
+      "properties": {
+        "reviewId": { "type": "string" },
+        "productId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "images": { "type": "array" },
+        "verifiedPurchase": { "type": "boolean" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reviewId", "productId", "userId", "userName", "rating", "comment", "verifiedPurchase", "timestamp"]
+    },
+    "Wishlist": {
+      "title": "Wishlist Item",
+      "description": "Affiliation mapping representing wishlisted products per user.",
+      "type": "object",
+      "properties": {
+        "wishlistId": { "type": "string" },
+        "userId": { "type": "string" },
+        "productId": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["wishlistId", "userId", "productId", "addedAt"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "Promotional discount vouchers.",
+      "type": "object",
+      "properties": {
+        "couponId": { "type": "string" },
+        "code": { "type": "string" },
+        "discountType": { "type": "string", "enum": ["percentage", "fixed"] },
+        "discountValue": { "type": "number" },
+        "expiryDate": { "type": "string" },
+        "usageLimit": { "type": "number" },
+        "usageCount": { "type": "number" }
+      },
+      "required": ["couponId", "code", "discountType", "discountValue", "expiryDate", "usageLimit", "usageCount"]
+    },
+    "Referral": {
+      "title": "Referral link",
+      "description": "Referral attribution tracking mappings.",
+      "type": "object",
+      "properties": {
+        "referralId": { "type": "string" },
+        "referrerId": { "type": "string" },
+        "referredUserId": { "type": "string" },
+        "rewardClaimed": { "type": "boolean" },
+        "discountCreditCode": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["referralId", "referrerId", "referredUserId", "rewardClaimed", "timestamp"]
+    },
+    "CustomDesign": {
+      "title": "Custom Design",
+      "description": "User uploaded layout custom jerseys or tees order details.",
+      "type": "object",
+      "properties": {
+        "designId": { "type": "string" },
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "productType": { "type": "string", "enum": ["Football Jersey", "Oversized Tee", "Gym Vest"] },
+        "notes": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Reviewed", "Approved", "In Work", "Completed"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["designId", "userId", "email", "productType", "notes", "imageUrl", "status", "timestamp"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Administrative notifications or buyer communications.",
+      "type": "object",
+      "properties": {
+        "notificationId": { "type": "string" },
+        "userId": { "type": "string", "description": "The target reader user ID, or 'admin' for high priority alerts." },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "read": { "type": "boolean" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["notificationId", "userId", "title", "message", "read", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Store individual customer profiles."
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Product inventory including stock & category specifications."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Store individual purchase transactions, billing, shipping address and tracking."
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Store reviews & star ratings per apparel."
+    },
+    "/wishlist/{wishlistId}": {
+      "schema": "Wishlist",
+      "description": "Track custom wishlist indices."
+    },
+    "/coupons/{couponId}": {
+      "schema": "Coupon",
+      "description": "Promo vouchers and active state restrictions."
+    },
+    "/referrals/{referralId}": {
+      "schema": "Referral",
+      "description": "Voucher allocation for affiliate user referrals."
+    },
+    "/custom_designs/{designId}": {
+      "schema": "CustomDesign",
+      "description": "Store user custom jersey or tee graphic designs order files."
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "Store admin and user-centric notifications."
+    }
+  }
+}

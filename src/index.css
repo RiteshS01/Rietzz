@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom animation for continuously sliding background slides */
+@keyframes slide-right {
+  0% { transform: scale(1.05) translateX(0px); }
+  50% { transform: scale(1.08) translateX(10px); }
+  100% { transform: scale(1.05) translateX(0px); }
+}
+
+@keyframes glow-blink {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(34, 211, 238, 1)) drop-shadow(0 0 4px rgba(34, 211, 238, 0.6));
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.6);
+  }
+  50% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.2));
+    box-shadow: 0 0 3px rgba(34, 211, 238, 0.1);
+  }
+}
+
+.animate-subtle-pan {
+  animation: slide-right 20s ease-in-out infinite;
+}
+
+.animate-glow-blink {
+  animation: glow-blink 1.0s infinite ease-in-out;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Rietzz World Cup Sportswear Lab",
+  "description": "Interactive FIFA World Cup 2026 athletic sportswear and jersey store featuring live customizations, team selections, and auto-sliding showcase banners.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
