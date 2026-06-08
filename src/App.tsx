@@ -272,7 +272,7 @@ const amount = cart.reduce(
 if (payMethod === 'razorpay') {
   const loaded = await loadRazorpay();
   const orderData = await axios.post(
-  "http://localhost:5000/create-order",
+  "https://rietzz-api.onrender.com/create-order",
   {
     amount,
   }
