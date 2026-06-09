@@ -43,6 +43,12 @@ function StoreApp() {
 };
 
   const [currentTab, setCurrentTab] = useState('home');
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}, [currentTab]);
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   const WORLD_CUP_SLIDES = [
@@ -856,7 +862,15 @@ return (
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Stadium Core</span>
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">FOOTBALL JERSEYS</h4>
-                  <button onClick={() => setCurrentTab('football')} className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2">
+                  <button
+  onClick={() => {
+    setCurrentTab('football');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }}
+  className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2">
                     Shop Country collections <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -869,8 +883,16 @@ return (
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Drop Shoulder</span>
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">OVERSIZED STREET TEES</h4>
-                  <button onClick={() => setCurrentTab('oversized')} className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2">
-                    Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
+                  <button
+  onClick={() => {
+    setCurrentTab('oversized');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+  className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2"
+>
+  Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
+</button>
+  Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -882,8 +904,15 @@ return (
                 <div className="relative z-10 space-y-2 select-none">
                   <span className="text-[9px] font-mono tracking-widest text-purple-400 font-bold uppercase block">Kinetic Thread</span>
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">GYM CORE VESTS</h4>
-                  <button onClick={() => setCurrentTab('vests')} className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2">
-                    Shop Conditioning Vests <ArrowRight className="w-3.5 h-3.5" />
+                  <button
+  onClick={() => {
+    setCurrentTab('vests');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+  className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2"
+>
+  Shop Conditioning Vests <ArrowRight className="w-3.5 h-3.5" />
+</button>
                   </button>
                 </div>
               </div>

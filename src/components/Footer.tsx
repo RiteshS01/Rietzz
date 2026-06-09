@@ -88,8 +88,20 @@ export default function Footer({ setCurrentTab }: FooterProps) {
           <h6 className="text-xs font-mono font-bold uppercase tracking-widest text-white border-l-2 border-purple-500 pl-2">COLLECTIONS</h6>
           <ul className="space-y-2 text-xs font-sans text-neutral-400">
             <li><button onClick={() => setCurrentTab('football')} className="hover:text-purple-400 transition-colors">Football Jerseys</button></li>
-            <li><button onClick={() => setCurrentTab('oversized')} className="hover:text-purple-400 transition-colors">Oversized Street Tees</button></li>
-            <li><button onClick={() => setCurrentTab('vests')} className="hover:text-purple-400 transition-colors">Performance Gym Vests</button></li>
+            <li><button onClick={() => {
+  setCurrentTab('oversized');
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}} className="hover:text-purple-400 transition-colors">Oversized Street Tees</button></li>
+            <li><button onClick={() => {
+  setCurrentTab('vests');
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}} className="hover:text-purple-400 transition-colors">Performance Gym Vests</button></li>
             <li><button onClick={() => setCurrentTab('custom')} className="hover:text-purple-400 transition-colors">Custom Designer Board</button></li>
             <li><button onClick={() => setCurrentTab('trending')} className="hover:text-purple-400 transition-colors">Trending Products</button></li>
           </ul>
