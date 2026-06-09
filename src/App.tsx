@@ -2107,12 +2107,24 @@ return (
                           {/* Quantity updates */}
                           <div className="flex items-center gap-1.5">
                             <button
-                              onClick={() => updateCartQty(item.cartId, Math.max(1, item.quantity - 1))}
-                              className="px-2 bg-black border border-white/10 rounded"
-                            >
-                              -
-                            </button>
+  onClick={() => {
+    if (item.quantity === 1) {
+      removeFromCart(item.cartId);
+    } else {
+      updateCartQty(item.cartId, item.quantity - 1);
+    }
+  }}
+  className="px-2 bg-black border border-white/10 rounded"
+>
+  -
+</button>
                             <span className="font-bold text-neutral-300 w-4 text-center">{item.quantity}</span>
+                            <button
+  onClick={() => removeFromCart(item.cartId)}
+  className="bg-purple-600 text-white px-3 py-1 rounded"
+>
+  REMOVE
+</button>
                             <button
                               onClick={() => updateCartQty(item.cartId, item.quantity + 1)}
                               className="px-2 bg-black border border-white/10 rounded"
@@ -2125,7 +2137,7 @@ return (
 
                       <button
                         onClick={() => removeFromCart(item.cartId)}
-                        className="absolute top-2 right-2 text-neutral-500 hover:text-red-400 p-1 rounded transition-colors opacity-0 group-hover:opacity-100"
+                        className="absolute top-2 right-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white p-2 rounded-lg shadow-lg hover:scale-110 transition-all duration-300"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
