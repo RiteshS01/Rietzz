@@ -10,9 +10,14 @@ import {
 } from '../types';
 import { INITIAL_PRODUCTS, INITIAL_COUPONS } from '../data';
 import { isFirebaseSupported, db, auth, OperationType, handleFirestoreError } from '../firebase';
-import { 
-  signInWithPopup, GoogleAuthProvider, signOut, signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, updateProfile 
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword,
+  updateProfile
 } from 'firebase/auth';
 import {
   collection,

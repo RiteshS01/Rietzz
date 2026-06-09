@@ -4,6 +4,9 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { auth } from './firebase';
+console.log("AUTH OBJECT:", auth);
+import { sendPasswordResetEmail } from 'firebase/auth';
 import axios from "axios";
 import emailjs from '@emailjs/browser';
 
@@ -246,6 +249,19 @@ function StoreApp() {
     setRateComment('');
     setRateStars(5);
   };
+  const handleForgotPassword = async (email: string) => {
+  if (!email) {
+    alert('Please enter your email address first');
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert('Password reset email sent. Please check your Spam, or Promotions folder.');
+  } catch (err: any) {
+    alert(err.message);
+  }
+};
 
   // Auth Submit handler
   const handleAuthSubmit = async (e: React.FormEvent) => {
@@ -1840,6 +1856,15 @@ return (
                   >
                     <Star className="w-4 h-4 text-purple-400" /> Auto-Access Admin Simulation panel
                   </button>
+                  <div className="text-center pt-2">
+  <button
+    type="button"
+    onClick={() => handleForgotPassword(authEmail)}
+    className="text-purple-400 hover:underline text-[10px]"
+  >
+    Forgot Password?
+  </button>
+</div>
 
                   {/* Toggle Mode */}
                   <div className="text-center pt-2">
