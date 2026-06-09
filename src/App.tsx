@@ -892,8 +892,6 @@ return (
 >
   Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
 </button>
-  Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
                 </div>
               </div>
 
@@ -913,7 +911,6 @@ return (
 >
   Shop Conditioning Vests <ArrowRight className="w-3.5 h-3.5" />
 </button>
-                  </button>
                 </div>
               </div>
 
