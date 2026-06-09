@@ -191,8 +191,13 @@ function StoreApp() {
   };
 
   const handleProductDetailClick = (product: Product) => {
-    setSelectedProduct(product);
-  };
+  setSelectedProduct(product);
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
 
   const executeAddProductToCart = () => {
     if (!selectedProduct) return;
