@@ -52,30 +52,6 @@ function StoreApp() {
     behavior: 'smooth'
   });
 }, [currentTab]);
-useEffect(() => {
-  const handleBackButton = () => {
-  const hash = window.location.hash;
-
-  if (hash.startsWith('#product-')) {
-    setSelectedProduct(null);
-    return;
-  }
-
-  const tab = hash.replace('#', '');
-
-  if (tab) {
-    setCurrentTab(tab);
-  } else {
-    setCurrentTab('home');
-  }
-};
-
-  window.addEventListener('popstate', handleBackButton);
-
-  return () => {
-    window.removeEventListener('popstate', handleBackButton);
-  };
-}, []);
 
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
@@ -85,7 +61,7 @@ useEffect(() => {
       badge: "🏆 FIFA WORLD CUP 2026 OFFICIAL HOST",
       title: "UNITED FOR 2026 • USA",
       subtitle: "CYBER PRESTIGE",
-      description: "Dominant athletic contours featuring vibrant cyber-violet highlights, deep oceanic space tones, and high-definition neon trims. Engineered for elite competitors.",
+      description: "Built for dreamers, grinders, and future legends.",
       image: "https://wallpapercave.com/wp/wp15656076.jpg",
       pillColor: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
       gradientColors: "from-cyan-400 via-teal-200 to-purple-500",
@@ -98,7 +74,7 @@ useEffect(() => {
       badge: "⚡ ESTADIO AZTECA LEGACY • MEXICO",
       title: "FEEL THE ELITE PASSION",
       subtitle: "HERITAGE COUTURE",
-      description: "Vibrant emerald greens, neon-flecked team plates, and historic Aztec-themed sleeve piping. Dominate the space with explosive cultural style.",
+      description: "For Those Who Don't Follow Trends, They Create Them.",
       image: "https://editorial.uefa.com/resources/0294-1c8f62642a4e-5c79d91aa296-1000/fbl-wc2026-eur-draw.jpeg",
       pillColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
       gradientColors: "from-emerald-400 via-green-300 to-emerald-500",
@@ -111,7 +87,7 @@ useEffect(() => {
       badge: "❄️ THE COAST-TO-COAST PEAKS • CANADA",
       title: "IGNITE THE WINTER SPIRIT",
       subtitle: "GLACIER THERMALS",
-      description: "Crisp snowy-peak whites contrasted against bold scarlet red maple symbols. Engineered to sustain absolute core temperatures on freezing pitch nights.",
+      description: "Every stitch carries ambition. Every design reflects greatness.",
       image: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/global_wc26_away_jerseys_multifed_football_ss26_launch_plp_02_banner_snippet_d_b6793e8295.jpg",
       pillColor: "bg-rose-500/10 text-rose-300 border-rose-500/30",
       gradientColors: "from-rose-400 via-red-300 to-rose-500",
@@ -161,7 +137,35 @@ useEffect(() => {
   const [designTemplateUrl, setDesignTemplateUrl] = useState('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800');
   const [designSubmitting, setDesignSubmitting] = useState(false);
   const [designSuccess, setDesignSuccess] = useState(false);
+  
 
+useEffect(() => {
+  const handleBackButton = () => {
+    const hash = window.location.hash;
+    if (cartDrawerOpen && hash !== '#cart') {
+  setCartDrawerOpen(false);
+}
+
+   if (selectedProduct && !hash.startsWith('#product-')) {
+  setSelectedProduct(null);
+}
+
+    const tab = hash.replace('#', '');
+
+    if (tab) {
+      setCurrentTab(tab);
+    } else {
+      setCurrentTab('home');
+    }
+  };
+
+  window.addEventListener('popstate', handleBackButton);
+
+  return () => {
+    window.removeEventListener('popstate', handleBackButton);
+  };
+
+}, [selectedProduct, cartDrawerOpen]);
   // --- Authentication panel state ---
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
@@ -187,7 +191,7 @@ useEffect(() => {
       setDetailColor(selectedProduct.colors[0]);
       setDetailImageIdx(0);
       setDetailQty(1);
-      setCustomizationActive(selectedProduct.category === 'jerseys');
+      setCustomizationActive(false);
     }
   }, [selectedProduct]);
 
@@ -476,7 +480,10 @@ return (
     setSelectedProduct(null);
     setSelectedCountry(null);
 }}
-        openCartDrawer={() => setCartDrawerOpen(true)} 
+        openCartDrawer={() => {
+  window.history.pushState({}, '', '#cart');
+  setCartDrawerOpen(true);
+}} 
       />
 
       {/* Main app display frame */}
@@ -489,7 +496,9 @@ return (
             {/* Back indicator button */}
             <button
               id="back-to-catalog-btn"
-              onClick={() => setSelectedProduct(null)}
+              onClick={() => {
+  window.history.back();
+}}
               className="mb-8 font-mono text-xs uppercase tracking-widest text-neutral-400 hover:text-purple-400 flex items-center gap-1.5 transition-colors"
             >
               ← Back to collections
@@ -855,7 +864,6 @@ return (
                     RIETZZ began as an elite performance design lab preparing for the historical 2026 stadium season with a ultimate mission: to construct custom jerseys and high-density gear that exist on the boundaries of stadium performance and bold underground streetwear cultures.
                   </p>
                   <p className="text-sm text-neutral-400 leading-relaxed font-sans">
-                    Every piece is crafted with high-definition knit stitchings, authentic nation crests, custom player numberings, and temperature-controlled comfort mesh suitable for the heat of the USA, Canada, and Mexico arenas.
                   </p>
                 </div>
                 <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
@@ -922,12 +930,14 @@ return (
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">FOOTBALL JERSEYS</h4>
                   <button
   onClick={() => {
-    setCurrentTab('football');
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }}
+  window.history.pushState({}, '', '#football');
+  setCurrentTab('football');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}}
   className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2">
                     Shop Country collections <ArrowRight className="w-3.5 h-3.5" />
                   </button>
@@ -943,9 +953,14 @@ return (
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">OVERSIZED STREET TEES</h4>
                   <button
   onClick={() => {
-    setCurrentTab('oversized');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }}
+  window.history.pushState({}, '', '#oversized');
+  setCurrentTab('oversized');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}}
   className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2"
 >
   Shop Streetwear catalog <ArrowRight className="w-3.5 h-3.5" />
@@ -962,9 +977,14 @@ return (
                   <h4 className="text-lg sm:text-2xl font-sans font-black text-white uppercase leading-none">GYM CORE VESTS</h4>
                   <button
   onClick={() => {
-    setCurrentTab('vests');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }}
+  window.history.pushState({}, '', '#vests');
+  setCurrentTab('vests');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}}
   className="text-xs font-mono uppercase tracking-widest text-white hover:text-purple-400 flex items-center gap-1 leading-loose pt-2"
 >
   Shop Conditioning Vests <ArrowRight className="w-3.5 h-3.5" />
@@ -1930,7 +1950,7 @@ return (
               
               <div className="space-y-4 sm:space-y-6">
                 <span className="text-purple-400 font-bold uppercase tracking-widest pl-2 border-l-2 border-purple-500 block">SUPPORT DESK</span>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-sans font-black text-white uppercase leading-none">RIETZZ CENTRAL OFFICES</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-sans font-black text-white uppercase leading-none">RIETZZ CENTRAL OFFICE</h2>
                 <p className="text-neutral-400 leading-relaxed font-sans">Our design centers operate globally. For general apparel custom blueprints or wholesale queries, compile contact tickets right here.</p>
                 
                 <div className="space-y-4">
@@ -1940,7 +1960,7 @@ return (
                     </div>
                     <div>
                       <span className="block font-bold text-white uppercase">Corporate HQ</span>
-                      <span className="block text-neutral-400 mt-0.5">Connaught Place Central, Block E, New Delhi, India</span>
+                      <span className="block text-neutral-400 mt-0.5">Lakshmi Vallabh Appartment,Flat no 402,Govind Nagar,Loni Kalbhor,Pune</span>
                     </div>
                   </div>
 
@@ -1950,7 +1970,7 @@ return (
                     </div>
                     <div>
                       <span className="block font-bold text-white uppercase">Athletic hotlines</span>
-                      <span className="block text-neutral-400 mt-0.5">+91 1800-419-RIETZZ (Free Toll)</span>
+                      <span className="block text-neutral-400 mt-0.5">+91 7666601086 (Free Toll)</span>
                     </div>
                   </div>
 
@@ -1959,12 +1979,61 @@ return (
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="block font-bold text-white uppercase">Bespoke Inquiries</span>
-                      <span className="block text-purple-400 mt-0.5 lowercase">design@rietzz.com</span>
+                      <span className="block font-bold text-white uppercase">Email Inquiries</span>
+                      <span className="block text-purple-400 mt-0.5 lowercase">ritesh.ds.001@gmail.com</span>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="mt-10 relative">
+
+  {/* Purple Glow Background */}
+  <div className="absolute -inset-2 bg-purple-600/10 blur-3xl rounded-full"></div>
+
+  <h3 className="relative text-2xl font-extrabold uppercase tracking-widest text-purple-400 mb-6 flex items-center gap-3">
+    <span className="h-[2px] w-10 bg-purple-500"></span>
+    Leadership Team
+    <span className="h-[2px] flex-1 bg-purple-500"></span>
+  </h3>
+
+  <div className="space-y-5 relative">
+
+    <div className="border border-purple-500/20 rounded-xl p-4 bg-white/5 hover:bg-purple-500/10 transition">
+      <h4 className="text-2xl font-bold text-white">
+        Ritesh Shinde
+      </h4>
+      <p className="text-lg text-purple-400 font-medium">
+        CEO & Founder
+      </p>
+    </div>
+
+    <div className="border border-purple-500/20 rounded-xl p-4 bg-white/5 hover:bg-purple-500/10 transition">
+      <h4 className="text-2xl font-bold text-white">
+        Vijay Raj
+      </h4>
+      <p className="text-lg text-purple-400 font-medium">
+        Senior Developer
+      </p>
+    </div>
+
+    <div className="border border-purple-500/20 rounded-xl p-4 bg-white/5 hover:bg-purple-500/10 transition">
+      <h4 className="text-2xl font-bold text-white">
+        Lakshay Singh
+      </h4>
+      <p className="text-lg text-purple-400 font-medium">
+        Marketing Head
+      </p>
+    </div>
+
+  </div>
+
+  <div className="mt-8 text-center">
+    <p className="text-3xl font-black uppercase tracking-[0.3em] text-purple-500">
+      RIETZZ Pro
+    </p>
+  </div>
+
+</div>
 
               {/* Contact Ticket Form */}
               <div className="bg-neutral-900 border border-white/10 rounded-2xl p-6 shadow-2xl space-y-4">

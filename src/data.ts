@@ -431,7 +431,7 @@ export const INITIAL_COUPONS: Coupon[] = [
     couponId: 'coup-fifa20',
     code: 'FIFA20',
     discountType: 'fixed',
-    discountValue: 500, // 500 INR off flat
+    discountValue: 200, // 500 INR off flat
     expiryDate: '2027-06-30',
     usageLimit: 250,
     usageCount: 19
