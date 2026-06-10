@@ -52,6 +52,31 @@ function StoreApp() {
     behavior: 'smooth'
   });
 }, [currentTab]);
+useEffect(() => {
+  const handleBackButton = () => {
+  const hash = window.location.hash;
+
+  if (hash.startsWith('#product-')) {
+    setSelectedProduct(null);
+    return;
+  }
+
+  const tab = hash.replace('#', '');
+
+  if (tab) {
+    setCurrentTab(tab);
+  } else {
+    setCurrentTab('home');
+  }
+};
+
+  window.addEventListener('popstate', handleBackButton);
+
+  return () => {
+    window.removeEventListener('popstate', handleBackButton);
+  };
+}, []);
+
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   const WORLD_CUP_SLIDES = [
@@ -194,6 +219,12 @@ function StoreApp() {
   };
 
   const handleProductDetailClick = (product: Product) => {
+  window.history.pushState(
+    { productId: product.productId },
+    '',
+    '#product-' + product.productId
+  );
+
   setSelectedProduct(product);
 
   window.scrollTo({
@@ -435,10 +466,16 @@ return (
       <Header 
         currentTab={currentTab} 
         setCurrentTab={(tab) => {
-          setCurrentTab(tab); 
-          setSelectedProduct(null);
-          setSelectedCountry(null);
-        }} 
+    window.history.pushState(
+        { tab },
+        '',
+        '#' + tab
+    );
+
+    setCurrentTab(tab);
+    setSelectedProduct(null);
+    setSelectedCountry(null);
+}}
         openCartDrawer={() => setCartDrawerOpen(true)} 
       />
 
